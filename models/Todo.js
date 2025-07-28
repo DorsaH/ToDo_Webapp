@@ -6,7 +6,7 @@ const todoSchema = mongoose.Schema({
 });
 
 // create todo model
-const todoModel = mongoose.model("todo_items", todoSchema);
+const todoModel = mongoose.model("todos", todoSchema);
 
 // export model
 module.exports = todoModel;
