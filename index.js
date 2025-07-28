@@ -77,12 +77,17 @@ app.put("/todos/:id", async(req, res) =>{
         const newTodo = {
             "text" : newText
         };
-        await todoModel.findByIdAndUpdate(id, newTodo);
-        res.status(200).send("PUT request recieved")
+        const result = await todoModel.findByIdAndUpdate(id, newTodo);
+        if(result != null){
+            res.status(200).send("PUT request recieved for entry " + id + " with new text: " + newText)
+        }
+        else{
+            res.status(404).send("Could not find the entry.");
+        }
 
     }catch(error){
         console.log(error);
-        res.status(500).send("PUT request failed: " + error);
+        res.status(500).send("Unable to update entry: " + error);
     }
 });
 
