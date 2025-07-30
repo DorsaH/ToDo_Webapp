@@ -1,4 +1,4 @@
-.todo-items div {
+.todo-items li {
     border: 2px solid black;
     display: flex;
     justify-content: space-between;
