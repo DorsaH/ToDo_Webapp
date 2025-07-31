@@ -35,10 +35,17 @@ async function getTodos(){
         //create button
         const updateBtn = document.createElement("button");
         updateBtn.innerHTML = "Update";
+        updateBtn.classList.add("todo-buttons");
         const deleteBtn = document.createElement("button");
         deleteBtn.innerHTML = "Delete";
-        todoListItem.appendChild(updateBtn);
-        todoListItem.appendChild(deleteBtn);
+        deleteBtn.classList.add("todo-buttons");
+
+        //create a div for grouping buttons
+        const buttonDiv = document.createElement("div");
+        buttonDiv.appendChild(updateBtn);
+        buttonDiv.appendChild(deleteBtn);
+
+        todoListItem.appendChild(buttonDiv);
 
         todoItemsContainer.appendChild(todoListItem);
 
