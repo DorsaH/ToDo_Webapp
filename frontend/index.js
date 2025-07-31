@@ -14,10 +14,9 @@ async function getTodos(){
             "Content-Type": "application/json"
         }
     };
-// sending the http request
+// sending the http request and handle response
     const response = await fetch(backendURL+ "/todos" , options);
 
-    // handle the http response
     const todos = await response.json();
     // console.log(todos);
 
@@ -53,6 +52,34 @@ async function getTodos(){
 
     });
 
+}
+
+async function postTodo(){
+    const todoInput = document.getElementById("todo-input");
+    let todoValue = todoInput.value;
+
+    //
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        // body: `{text : ${todoValue};}`
+        // or better formatting:
+        body : JSON.stringify({
+            text : todoValue
+        })
+    };
+// sending the http request and handle response
+    const response = await fetch(backendURL+ "/todos" , options);
+
+    if(response.ok){
+        console.log("Todo item is added successfully!");
+        location.reload();
+    }else{
+        console.log("Todo item could not be added!");
+    }
+    // console.log(todos);
 }
 
 getTodos();
