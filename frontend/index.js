@@ -35,9 +35,13 @@ async function getTodos(){
         const updateBtn = document.createElement("button");
         updateBtn.innerHTML = "Update";
         updateBtn.classList.add("todo-buttons");
+    
         const deleteBtn = document.createElement("button");
         deleteBtn.innerHTML = "Delete";
         deleteBtn.classList.add("todo-buttons");
+        deleteBtn.addEventListener("click",() =>{
+            deleteTodo(todoItem._id);
+        });
 
         //create a div for grouping buttons
         const buttonDiv = document.createElement("div");
@@ -70,9 +74,10 @@ async function postTodo(){
             text : todoValue
         })
     };
-// sending the http request and handle response
+// sending the http request and wait for response
     const response = await fetch(backendURL+ "/todos" , options);
 
+    // handling the response
     if(response.ok){
         console.log("Todo item is added successfully!");
         location.reload();
@@ -82,4 +87,24 @@ async function postTodo(){
     // console.log(todos);
 }
 
+async function deleteTodo(id){
+    //define http request options
+    const options = {
+        method : "DELETE"
+        // and we don't need the header as we are not sending anything
+    }
+
+    // send the http request and wait for response
+    const response = await fetch(backendURL + "/todos/"+ id , options);
+
+    //handle response
+    if (response.ok){
+        console.log("Delete successfull;");
+        location.reload();
+    } else {
+        console.log("Delete unsuccessfull");
+        
+    }
+
+}
 getTodos();
