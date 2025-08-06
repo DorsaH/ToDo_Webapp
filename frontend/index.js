@@ -6,6 +6,8 @@ dateElement.innerHTML = date.toLocaleDateString();
 
 const backendURL = "http://localhost:2000";
 // ===================================
+
+// method to get all the  todo tasks
 async function getTodos(){
     //
     const options = {
@@ -35,6 +37,9 @@ async function getTodos(){
         const updateBtn = document.createElement("button");
         updateBtn.innerHTML = "Update";
         updateBtn.classList.add("todo-buttons");
+        updateBtn.addEventListener("click", () =>{
+            updateToDo(todoItem._id);
+        });
     
         const deleteBtn = document.createElement("button");
         deleteBtn.innerHTML = "Delete";
@@ -57,7 +62,7 @@ async function getTodos(){
     });
 
 }
-
+// method to create a todo task
 async function postTodo(){
     const todoInput = document.getElementById("todo-input");
     let todoValue = todoInput.value;
@@ -86,7 +91,7 @@ async function postTodo(){
     }
     // console.log(todos);
 }
-
+// method to Delete a todo task
 async function deleteTodo(id){
     //define http request options
     const options = {
@@ -105,6 +110,36 @@ async function deleteTodo(id){
         console.log("Delete unsuccessfull");
         
     }
+
+}
+
+// method to update a todo task
+async function updateToDo(id) {
+    //get the new todo text
+    todoInputElement = document.getElementById("todo-input");
+    let todoInputValue = todoInputElement.value;
+
+    //define the http request option
+    const options = {
+        method : "PUT",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify ({
+            text : todoInputValue
+        })
+    };
+
+    const response = await fetch(backendURL + "/todos/" + id , options);
+
+    // handle the response
+    if (response.ok) {
+        console.log("Todo item successfully updated");
+        location.reload();
+    } else {
+        console.log("Todo item updated failed");
+    }
+
 
 }
 getTodos();
