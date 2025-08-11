@@ -109,3 +109,5 @@ const connectionString = CONNECTION_STRING;
 mongoose.connect(connectionString)
     .then(() => {console.log("Connection successful!")})
     .catch((err) => {console.log(err)});
+
+    //test comment 2
