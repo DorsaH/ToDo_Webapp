@@ -36,14 +36,14 @@ async function getTodos(){
         //create button
         const updateBtn = document.createElement("button");
         updateBtn.innerHTML = "Update";
-        updateBtn.classList.add("todo-buttons");
+        updateBtn.classList.add("todo-buttons", "btn-warm","text-dark");
         updateBtn.addEventListener("click", () =>{
             updateToDo(todoItem._id);
         });
     
         const deleteBtn = document.createElement("button");
         deleteBtn.innerHTML = "Delete";
-        deleteBtn.classList.add("todo-buttons");
+        deleteBtn.classList.add("todo-buttons" ,"btn-warm", "text-dark");
         deleteBtn.addEventListener("click",() =>{
             deleteTodo(todoItem._id);
         });
